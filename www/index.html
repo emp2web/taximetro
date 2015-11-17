@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Import Google Icon Font-->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/fuente.css"  media="screen,projection"/>
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+
+	<body>
+
+		<nav>
+			<div class="nav-wrapper amber">
+				<a href="#!" class="brand-logo center">Taximetro</a>
+			</div>
+		</nav>
+
+		<div class="center" style="display:none;" id="contando">
+			<img width="100%" id='mapa'>
+		</div>
+
+		<div class="container center" style="display:none;" id='btn_inicio'>
+			<br><br>
+			<a ref="#!" id="btn_iniciar" class="btn-floating btn-large waves-effect waves-light amber" style="width: 250px; height: 250px; font-size:2.5em;">
+			<div style="padding-top: 40%;"> <b>Iniciar</b> </div>
+			</a>	
+		</div>
+
+		<div class="container center" style="display:none;" id='no_se_pudo'>
+		<br><br>
+			<div class="row">
+				<div class="col s12 m6">
+					<div class="card amber">
+						<div class="card-content">
+							<span class="card-title"><b>Error</b></span>
+							<div class="row">
+								<div class="col s6 white-text left">
+									Lo sentimos no hemos logrado encontrar su ubicaci&oacute;n
+								</div>
+								<div class="col s6">
+									<i class="material-icons large white-text">thumb_down</i>
+								</div>
+							</div>
+							<div class="card-action">
+								<div class="col s6 white-text left">
+									<a href="#!" class="white btn-large" onclick="app.inicio();">Inicio</a>
+								</div>
+								<div class="col s6 white-text left">
+				                    <a href="#!" class="white btn-large" onclick="app.salir();">salir</a>
+				                </div>
+				                <br>
+				            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<input type="text" name="lat" id="lat">
+		<input type="text" name="lon" id="lon">
+		
+		
+		<!--Import javascript-->
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/jq.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/js.js"></script>
+</body>
+</html>
