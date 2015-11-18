@@ -1,3 +1,11 @@
+/*
+
+ cordova create taximetro com.e2w.taximetro Taximetro
+ cordova platform add android
+ cordova plugin add cordova-plugin-geolocation
+
+
+*/
 $(document).on('ready',function(){
    
     var lat, lon, is_mapa=true, vr_unidad = 78, unidades_tot, tiempot = 0, salir = false, pos_json=1, distm = dist_a = 0, unidades_dist = unidades_time = 0, map = document.getElementById("mapa");
