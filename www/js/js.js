@@ -3,19 +3,20 @@ $(document).on('ready',function(){
     var lat, lon, is_mapa=true, vr_unidad = 78, unidades_tot, tiempot = 0, salir = false, pos_json=1, distm = dist_a = 0, unidades_dist = unidades_time = 0, map = document.getElementById("mapa");
     var pap = 700, nf = 1900, terminal = 500, aeropuerto = 3900;
     var is_pap = false, is_nf = false, is_terminal = false, is_aeropuerto = false;
+    
     $('.slider').slider({
         indicators: false,
-        height: 80,
+        height: 50,
         transition: 300,
         interval: 2000
     });
     $(".slider").show();
 
+
     inicio = function(){
         $("#contando").hide('fast');
         $("#no_se_pudo").hide('fast');
         $('#btn_inicio').fadeIn('slow');
-        isStorage();
     }
 
     isStorage = function(){
@@ -111,7 +112,7 @@ $(document).on('ready',function(){
         $("#contando").fadeIn('slow');
         $("#no_se_pudo").hide('fast');
         $('#btn_inicio').hide('fast');
-        setTimeout(newPos, 1000);
+        setTimeout(newPos, 15000);
         setUnidadesDist();
         update();
     }
@@ -122,7 +123,7 @@ $(document).on('ready',function(){
         }else{
             cordenada('cargaNew();',true);
             /*setTimeout("newPos()",15000);*/
-            setTimeout("newPos()",1000);
+            setTimeout("newPos()",15000);
         }
     }
 
@@ -161,10 +162,12 @@ $(document).on('ready',function(){
             }
 
             pos_json == 1 ? centro = 1 : centro = parseInt(pos_json/2) ;
+
             centro = datos[centro].lat+","+datos[centro].lon;
             map.src = "http://maps.google.com/maps/api/staticmap?zoom=15&size=600x400&center="+centro+marcadores+"&key=AIzaSyAcZI5nuZ2dAhKw7VV0e16nrlw4F5XL_-c"; 
             if(!salir){
-                setTimeout(getMapa,10000)
+                /*setTimeout(getMapa,10000)*/
+                setTimeout(getMapa,180000);
             }
             pos_json ++;
             is_mapa=false;
@@ -194,7 +197,7 @@ $(document).on('ready',function(){
 
         $("#dt_cont_unidades_vr").html(getUnidadesDist() + getUnidadesTime());
         $("#dt_vr_total").html("$ "+ valor);
-        setTimeout(update,1000);
+        setTimeout(update,15000);
     }
 
     adicionales = function(op){
@@ -210,6 +213,7 @@ $(document).on('ready',function(){
 
 
     inicio();
+    isStorage();
 
     $("#btn_iniciar").click(function(event) {
         cordenada("cargaInicio();",false);
