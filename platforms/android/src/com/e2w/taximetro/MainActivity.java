@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.e2w.taxi;
+package com.e2w.taximetro;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

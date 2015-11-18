@@ -33,10 +33,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.e2w.taxi"
+            "PACKAGE_NAME": "com.e2w.taximetro"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.e2w.taxi"
+            "PACKAGE_NAME": "com.e2w.taximetro"
         }
     },
     "dependent_plugins": {}
