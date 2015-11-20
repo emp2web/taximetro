@@ -201,22 +201,22 @@ var app = {
             valor = 50 * vr_unidad;
         }else{
             valor = unidades_tot * vr_unidad;
+        }
 
-            if (is_aeropuerto) {
-                valor += aeropuerto;
-            }
+        if (is_aeropuerto) {
+            valor += aeropuerto;
+        }
 
-            if (is_terminal) {
-                valor += terminal;
-            }
+        if (is_terminal) {
+            valor += terminal;
+        }
 
-            if (is_nf) {
-                valor += nf;
-            }
+        if (is_nf) {
+            valor += nf;
+        }
 
-            if (is_pap) {
-                valor += pap;
-            }
+        if (is_pap) {
+            valor += pap;
         }
 
 
