@@ -11,28 +11,6 @@ var storage;
 
 var app = {
 	
-	/*lat: 0, 
-	lon: 0, 
-	is_mapa: true, 
-	vr_unidad: 78, 
-	unidades_tot: 0, 
-	tiempot: 0, 
-	salir: false, 
-	pos_json: 1, 
-	distm: 0, 
-	dist_a: 0, 
-	unidades_dist: 0, 
-	unidades_time: 0, 
-	map: document.getElementById("mapa"),
-    pap: 700, 
-    nf: 1900, 
-    terminal: 500, 
-    aeropuerto: 3900,
-    is_pap: false, 
-    is_nf: false, 
-    is_terminal: false, 
-    is_aeropuerto: false,*/
-	
 	ini: function(){
 		this.isStorage();
 		this.eventos();
@@ -80,8 +58,10 @@ var app = {
         return reto;                      //Retorna tres decimales
     },
     setDistancia: function(d){
+        /*console.log("setDistancia");*/
+        /*console.log(tiempot+" .. "+dat_act+" .. "+distm+" .. "+d);*/
         if (d == 0) {
-            tiempot += 15;
+            tiempot += 5;
         } else{
             totd = distm - dist_a;
             if (totd > 300){
@@ -90,6 +70,7 @@ var app = {
             }
             distm += d;
         };
+        /*console.log(tiempot+" .. "+dat_act+" .. "+distm+" .. "+d);*/
     },
     errcord: function(){
     	$("#contando").hide('fast');
@@ -131,7 +112,7 @@ var app = {
         $("#no_se_pudo").hide('fast');
         $('#btn_inicio').hide('fast');
         /*setTimeout(this.newPos, 15000);*/
-        setTimeout(this.newPos, 1000);
+        setTimeout(this.newPos, 5000);
         this.setUnidadesDist();
         this.update();
     },
@@ -143,7 +124,7 @@ var app = {
             /*setTimeout("newPos()",15000);*/
             /*setTimeout("this.newPos()",15000);*/
             if (!salir) {
-            	setTimeout("app.newPos()",1000);
+            	setTimeout("app.newPos()",5000);
             }
         }
     },
@@ -155,7 +136,6 @@ var app = {
         this.getMapa();
     },
     getMapa: function(){
-    	console.log('mapa');
         if (is_mapa) {
             dat_act = storage.getItem('taximetro');
             dato =  '"'+pos_json+'": {"lat":'+this.getLat()+',"lon":'+this.getLon()+',"dis": '+this.getDistancia()+'}';
@@ -165,7 +145,7 @@ var app = {
             }else{
                 new_dato = dat_act +", "+ dato;    
             }
-            
+
             storage.setItem("taximetro",new_dato);
             
             datos = this.aobj("{"+storage.getItem('taximetro')+"}");
@@ -174,51 +154,73 @@ var app = {
             if (pos_json==1) {
                 marcadores += "&markers=color:green|" + datos[pos_json].lat + "," + datos[pos_json].lon;
             }else{
-                for (var i = 1; i < pos_json; i++) {
+                for (var i = 1; i <= pos_json; i++) {
                     if (i == 1) {
                         marcadores += "&markers=color:green|" + datos[i].lat + "," + datos[i].lon;
                     } else{
                         marcadores += "&markers=color:yellow|" + datos[i].lat + "," + datos[i].lon;
                     };
                 }
+            }            
+
+            pos_json == 1 ? c_ = 1 : c_ = parseInt(pos_json/2) ;
+
+            centro = datos[c_].lat+","+datos[c_].lon;
+
+            d = app.distancia(datos[c_].lat,datos[c_].lon,this.getLat(),this.getLon(),'m');
+            
+            zoom = 10;
+
+            if (140 > d) {
+                zoom = 18;
+            }else if(295 > d){
+                zoom = 17;
+            }else if(600 > d){
+                zoom = 16;
+            }else if(1150 > d){
+                zoom = 15;
+            }else if(2350 > d){
+                zoom = 14;
+            }else if(4700 > d){
+                zoom = 13;
+            }else if(9400 > d){
+                zoom = 12;
+            }else if(18800 > d){
+                zoom = 11;
             }
 
-            pos_json == 1 ? centro = 1 : centro = parseInt(pos_json/2) ;
-
-            centro = datos[centro].lat+","+datos[centro].lon;
-            map.src = "http://maps.google.com/maps/api/staticmap?zoom=15&size=600x400&center="+centro+marcadores+"&key=AIzaSyAcZI5nuZ2dAhKw7VV0e16nrlw4F5XL_-c"; 
-            if(!salir){
-                /*setTimeout(getMapa,10000)*/
-                /*setTimeout(this.getMapa,180000);*/
-                /*setTimeout(this.getMapa,1000);*/
-            }
+            map.src = "http://maps.google.com/maps/api/staticmap?zoom="+zoom+"&size=600x400&center="+centro+marcadores+"&key=AIzaSyAcZI5nuZ2dAhKw7VV0e16nrlw4F5XL_-c"; 
             pos_json ++;
             is_mapa=false;
         }
     },
     update: function(){
-    	console.log('update');
         unidades_tot = app.getUnidadesTime() + app.getUnidadesDist();
-        valor = unidades_tot * vr_unidad;
 
-        if (is_aeropuerto) {
-            valor += aeropuerto;
+        if (unidades_tot<50) {
+            valor = 50 * vr_unidad;
+        }else{
+            valor = unidades_tot * vr_unidad;
+
+            if (is_aeropuerto) {
+                valor += aeropuerto;
+            }
+
+            if (is_terminal) {
+                valor += terminal;
+            }
+
+            if (is_nf) {
+                valor += nf;
+            }
+
+            if (is_pap) {
+                valor += pap;
+            }
         }
 
-        if (is_terminal) {
-            valor += terminal;
-        }
 
-        if (is_nf) {
-            valor += nf;
-        }
-
-        if (is_pap) {
-            valor += pap;
-        }
-
-
-        $("#dt_cont_unidades_vr").html(app.getUnidadesDist() + app.getUnidadesTime());
+        $("#dt_cont_unidades_vr").html(unidades_tot);
         $("#dt_vr_total").html("$ "+ valor);
         /*setTimeout(this.update,15000);*/
         /*setTimeout(app.update,1000);*/
