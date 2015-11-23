@@ -15,15 +15,14 @@
 
 		<nav>
 			<div class="nav-wrapper amber">
-				<a href="#!" class="brand-logo center"><i class="material-icons left" style="font-size: 1.5em; margin-top:5px;">local_taxi</i>Taximetro</a>
+				<a href="#!" class="brand-logo center" style="font-size: 1.9em;"><i class="material-icons right" style="margin-top:10px;">local_taxi</i>Taximetro</a>
 			</div>
 		</nav>
-
 
   <div class="slider" style="display:none;">
     <ul class="slides">
       <li>
-      	<a href="http://emp2web.com#servicios" target="_blank">
+      	<a href="#!" onclick="app.carga_url('http://emp2web.com#servicios')">
       		<img src="img/alquiler.png">
 	      	<div class="caption right-align orange-text text-darken-4">
 	      		<h4>Servicios</h4>
@@ -31,7 +30,7 @@
 	      </a>
       </li>
       <li>
-      	<a href="http://emp2web.com#servicios" target="_blank">
+      	<a href="#!" onclick="app.carga_url('http://emp2web.com#productos')">
       		<img src="img/aa.png">
 	      	<div class="caption left-align orange-text text-darken-4">
 	      		<h4>Productos</h4>
@@ -60,23 +59,23 @@
 					<div class="col s12">
 						<hr>
 					</div>
-					<div class="col s6 z-depth-1">
+					<div class="col s6 z-depth-1" onclick="app.adicionales('aeropuerto')">
 					<br>
-						<i class="material-icons medium" id='aeropuerto' onclick="app.adicionales('aeropuerto')">flight</i><br>Aeropuerto
+						<i class="material-icons medium" id='aeropuerto'>flight</i><br>Aeropuerto
 					</div>
-					<div class="col s6 z-depth-1">
+					<div class="col s6 z-depth-1" onclick="app.adicionales('terminal')">
 					<br>
-						<i class="material-icons medium" id='terminal' onclick="app.adicionales('terminal')">directions_bus</i><br>Terminal
+						<i class="material-icons medium" id='terminal'>directions_bus</i><br>Terminal
 					</div>
-					<div class="col s6 z-depth-1">
+					<div class="col s6 z-depth-1" onclick="app.adicionales('nf')">
 					<br>
 						<!-- <i class="material-icons medium" id='' onclick="app.adicionales()">wb_cloudy</i><br>Nocturno / Festivo -->
-						<i class="material-icons medium" id='nf' onclick="app.adicionales('nf')">brightness_2</i><br>Nocturno / Festivo
+						<i class="material-icons medium" id='nf'>brightness_2</i><br>Nocturno / Festivo
 					</div>
-					<div class="col s6 z-depth-1">
+					<div class="col s6 z-depth-1" onclick="app.adicionales('pap')">
 					<br>
 						<!-- <i class="material-icons medium" id='' onclick="app.adicionales()">domain</i><br>Puerta a Puerta -->
-						<i class="material-icons medium" id='pap' onclick="app.adicionales('pap')">store</i><br>Puerta a Puerta
+						<i class="material-icons medium" id='pap'>store</i><br>Puerta a Puerta
 					</div>
 					<div class="col s12">
 						<hr>
@@ -138,11 +137,10 @@
 
 		
 		<!--Import javascript-->
-		<!--script type="text/javascript" src="cordova.js"></script-->
+		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jq.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=es"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
-		<!--script type="text/javascript" src="js/js.js"></script-->
 		<script type="text/javascript" src="js/tx.js"></script>
 </body>
 </html>

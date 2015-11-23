@@ -2,7 +2,12 @@
  cordova create taximetro com.e2w.taximetro Taximetro
  cordova platform add android
  cordova plugin add cordova-plugin-geolocation
+ cordova plugin add cordova-plugin-network-information
+ cordova plugin de añadir cordova-plugin-inappbrowser
+ cordova plugin add cordova-plugin-dialogs
+
 */
+
 var lat= 0, lon= 0, is_mapa= true, vr_unidad= 78, unidades_tot= 0, tiempot= 0, salir= false, pos_json= 1; 
 var distm= 0, dist_a= 0, unidades_dist= 0, unidades_time= 0, map= document.getElementById("mapa"); 
 var pap= 700, nf= 1900, terminal= 500, aeropuerto= 3900;
@@ -22,6 +27,7 @@ var app = {
 	    });
 	},
 	carga: function(){
+        /*app.conexion();*/
 		$('.slider').slider({
 		    indicators: false,
 		    height: 50,
@@ -64,7 +70,7 @@ var app = {
             tiempot += 5;
         } else{
             totd = distm - dist_a;
-            if (totd > 300){
+            if (totd > 400){
                 dist_a = distm;
                 is_mapa = true;
             }
@@ -78,10 +84,10 @@ var app = {
         $("#no_se_pudo").show('slow');
     },
     setUnidadesDist: function(){
-        unidades_dist = (parseInt(this.getDistancia()/100)+25);
+        unidades_dist = (parseInt(this.getDistancia()/105)+25);
     },
     setUnidadesTime: function(){
-        unidades_time = parseInt( this.getTime() / 30 );
+        unidades_time = parseInt( this.getTime() / 35 );
     },
     getUnidadesTime: function(){return unidades_time;},
     getUnidadesDist: function(){ return unidades_dist; },
@@ -229,11 +235,24 @@ var app = {
         ejecutar = 'if (is_'+op+') {$("#'+op+'").removeClass("orange-text");is_'+op+' = false;} else{ $("#'+op+'").addClass("orange-text"); is_'+op+' = true; };';
         eval(ejecutar);
         this.update();
+    },
+    carga_url: function(url){
+        cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+    },
+    conexion: function() {
+        var networkState = navigator.connection.type;
 
-        /*unidades_tot = getUnidadesTime() + getUnidadesDist();
-        valor = unidades_tot * vr_unidad;
-        ejecutar = 'if(is_'+op+'){valor += '+op+'; } $("#dt_vr_total").html("$ "+ valor);';
-        eval(ejecutar);*/
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        alert('Connection type: ' + states[networkState]);
     }
 
 };
