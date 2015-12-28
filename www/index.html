@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<!--Import Google Icon Font-->
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<!--Import materialize.css-->
-		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-		<!--link type="text/css" rel="stylesheet" href="css/fuente.css"  media="screen,projection"-->
+<html style="height: 100%">
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--link type="text/css" rel="stylesheet" href="css/fuente.css"  media="screen,projection"-->
 
-		<!--Let browser know website is optimized for mobile-->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	</head>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
 
-	<body class="yellow lighten-5">
+  <body class="yellow lighten-5" style="height: 100%">
 
-		<nav>
-			<div class="nav-wrapper amber">
-				<a href="#!" class="brand-logo center" style="font-size: 1.9em;"><i class="material-icons right" style="margin-top:10px;">local_taxi</i>Taximetro</a>
-			</div>
-		</nav>
+    <nav>
+      <div class="nav-wrapper amber">
+        <a href="#!" class="brand-logo center" style="font-size: 1.9em;"><i class="material-icons right" style="margin-top:10px;">local_taxi</i>Taximetro</a>
+      </div>
+    </nav>
 
   <!-- <div class="slider" style="display:none;">
     <ul class="slides">
       <li>
-      	<a href="#!" onclick="app.carga_url('http://emp2web.com#servicios')">
-      		<img src="img/alquiler.png">
-	      	<div class="caption right-align orange-text text-darken-4">
-	      		<h4>Servicios</h4>
-	      	</div>
-	      </a>
+        <a href="#!" onclick="app.carga_url('http://emp2web.com#servicios')">
+          <img src="img/alquiler.png">
+          <div class="caption right-align orange-text text-darken-4">
+            <h4>Servicios</h4>
+          </div>
+        </a>
       </li>
       <li>
-      	<a href="#!" onclick="app.carga_url('http://emp2web.com#productos')">
-      		<img src="img/aa.png">
-	      	<div class="caption left-align orange-text text-darken-4">
-	      		<h4>Productos</h4>
-	      	</div>
-      	</a>
+        <a href="#!" onclick="app.carga_url('http://emp2web.com#productos')">
+          <img src="img/aa.png">
+          <div class="caption left-align orange-text text-darken-4">
+            <h4>Productos</h4>
+          </div>
+        </a>
       </li>
     </ul>
   </div> -->
@@ -44,121 +44,104 @@
 
 
 
-		<div class="center" style="display:none;" id="contando">
-			<img width="100%" id='mapa'>
-			<div class="section">
-				<div class="row center">
-					<div class="col s8">
-						<span style="font-size:1.5em;">
-							<b>Unidades:</b>
-						</span>
-					</div>
-					<div class="col s4">
-						<span style="font-size:1.5em;" id='dt_cont_unidades_vr'>25</span>
-					</div>
-					<div class="col s12">
-						<hr>
-					</div>
-					<div class="col s6 z-depth-1" onclick="app.adicionales('aeropuerto')">
-					<br>
-						<i class="material-icons medium" id='aeropuerto'>flight</i><br>Aeropuerto
-					</div>
-					<div class="col s6 z-depth-1" onclick="app.adicionales('terminal')">
-					<br>
-						<i class="material-icons medium" id='terminal'>directions_bus</i><br>Terminal
-					</div>
-					<div class="col s6 z-depth-1" onclick="app.adicionales('nf')">
-					<br>
-						<!-- <i class="material-icons medium" id='' onclick="app.adicionales()">wb_cloudy</i><br>Nocturno / Festivo -->
-						<i class="material-icons medium" id='nf'>brightness_2</i><br>Nocturno / Festivo
-					</div>
-					<div class="col s6 z-depth-1" onclick="app.adicionales('pap')">
-					<br>
-						<!-- <i class="material-icons medium" id='' onclick="app.adicionales()">domain</i><br>Puerta a Puerta -->
-						<i class="material-icons medium" id='pap'>store</i><br>Puerta a Puerta
-					</div>
-					<div class="col s12">
-						<hr>
-					</div>
-					<div class="col s8">
-						<span style="font-size:1.5em;">
-							<b>Total:</b>
-						</span>
-					</div>
-					<div class="col s4">
-						<span style="font-size:1.5em;" id='dt_vr_total'>$ 1950</span>
-					</div>
-					<div class="col s12 center">
-						<hr>
-						<button class="btn waves-effect waves-light amber" type="button" name="action" onclick="app.finalizar();">
-							Finalizar <i class="material-icons right">send</i>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="center" style="display:none; height: 100%;" id="contando">
+      <div id="map_canvas" style="width: 100%; height: 50%;"></div>
+      <div class="section">
+        <div class="row center">
+          <div class="col s8">
+            <span style="font-size:1.5em;">
+              <b>Unidades:</b>
+            </span>
+          </div>
+          <div class="col s4">
+            <span style="font-size:1.5em;" id='dt_cont_unidades_vr'>25</span>
+          </div>
+          <div class="col s12">
+            <hr>
+          </div>
+          <div class="col s6 z-depth-1" onclick="app.adicionales('aeropuerto')">
+          <br>
+            <i class="material-icons large" id='aeropuerto'>flight</i><br>Aeropuerto
+          </div>
+          <div class="col s6 z-depth-1" onclick="app.adicionales('terminal')">
+          <br>
+            <i class="material-icons large" id='terminal'>directions_bus</i><br>Terminal
+          </div>
+          <div class="col s6 z-depth-1" onclick="app.adicionales('nf')">
+          <br>
+            <!-- <i class="material-icons large" id='' onclick="app.adicionales()">wb_cloudy</i><br>Nocturno / Festivo -->
+            <i class="material-icons large" id='nf'>brightness_2</i><br>Nocturno / Festivo
+          </div>
+          <div class="col s6 z-depth-1" onclick="app.adicionales('pap')">
+          <br>
+            <!-- <i class="material-icons large" id='' onclick="app.adicionales()">domain</i><br>Puerta a Puerta -->
+            <i class="material-icons large" id='pap'>store</i><br>Puerta a Puerta
+          </div>
+          <div class="col s12">
+            <hr>
+          </div>
+          <div class="col s8">
+            <span style="font-size:1.5em;">
+              <b>Total:</b>
+            </span>
+          </div>
+          <div class="col s4">
+            <span style="font-size:1.5em;" id='dt_vr_total'>$ 1950</span>
+          </div>
+          <div class="col s12 center">
+            <hr>
+            <button class="btn waves-effect waves-light amber" type="button" name="action" onclick="app.finalizar();">
+              Finalizar <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="container center" id='btn_inicio'>
-			<br><br>
-			<a ref="#!" id="btn_iniciar" class="btn-floating btn-large waves-effect waves-light amber" style="width: 250px; height: 250px; font-size:2.5em;">
-			<div style="padding-top: 40%;"> <b>Iniciar</b> </div>
-			</a>	
-		</div>
+    <div class="container center" id='btn_inicio'>
+      <br><br>
+      <a ref="#!" id="btn_iniciar" class="btn-floating btn-large waves-effect waves-light amber" style="width: 250px; height: 250px; font-size:2.5em;">
+      <div style="padding-top: 40%;"> <b>Iniciar</b> </div>
+      </a>  
+    </div>
 
-		<div class="container center" style="display:none;" id='no_se_pudo'>
-		<br><br>
-			<div class="row">
-				<div class="col s12 m6">
-					<div class="card amber">
-						<div class="card-content">
-							<span class="card-title"><b>Error</b></span>
-							<div class="row">
-								<div class="col s6 white-text left">
-									Lo sentimos no hemos logrado encontrar su ubicaci&oacute;n
-								</div>
-								<div class="col s6">
-									<i class="material-icons large white-text">thumb_down</i>
-								</div>
-							</div>
-							<div class="card-action">
-								<div class="col s12 white-text left">
-									<a href="#!" class="white btn-large" onclick="inicio();">Inicio</a>
-								</div>
-								<!-- <div class="col s6 white-text left">
-				                    <a href="#!" class="white btn-large" onclick="salir();">salir</a>
-				                </div> -->
-				                <br>
-				            </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
+    <div class="container center" style="display:none;" id='no_se_pudo'>
+    <br><br>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card amber">
+            <div class="card-content">
+              <span class="card-title"><b>Error</b></span>
+              <div class="row">
+                <div class="col s6 white-text left">
+                  Lo sentimos no hemos logrado encontrar su ubicaci&oacute;n
+                </div>
+                <div class="col s6">
+                  <i class="material-icons large white-text">thumb_down</i>
+                </div>
+              </div>
+              <div class="card-action">
+                <div class="col s12 white-text left">
+                  <a href="#!" class="white btn-large" onclick="app.exit();">Salir</a>
+                </div>
+                <!-- <div class="col s6 white-text left">
+                            <a href="#!" class="white btn-large" onclick="salir();">salir</a>
+                        </div> -->
+                        <br>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-
-<div class="fixed-action-btn" style="bottom: 5px; right: 5px;">
-    <a class="btn-floating btn-large orange">
-      <i class="large material-icons">dashboard</i>
-    </a>
-    <ul>
-		<li><a class="btn-floating black" id="calculadora_app"><i class="material-icons">queue</i></a></li>
-	  	<li><a class="btn-floating blue" id="whatsap_app"><i class="material-icons">chat</i></a></li>
-	  	<li><a class="btn-floating green" id="email_app"><i class="material-icons">contact_mail</i></a></li>
-	  	<li><a class="btn-floating red" id="exit_app"><i class="material-icons">input</i></a></li>
-    </ul>
-  </div>
-
-
-
-		
-		<!--Import javascript-->
-		<script type="text/javascript" src="cordova.js"></script>
-		<script type="text/javascript" src="js/jq.js"></script>
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=es"></script>
-		<script type="text/javascript" src="js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/tx.js"></script>
+    
+    <!--Import javascript-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jq.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAcZI5nuZ2dAhKw7VV0e16nrlw4F5XL_-c&sensor=true"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/tx.js"></script>
 </body>
 </html>

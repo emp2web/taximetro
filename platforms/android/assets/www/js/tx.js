@@ -1,10 +1,18 @@
 /*
  cordova create taximetro com.e2w.taximetro Taximetro
  cordova platform add android
+
+como saber la keystore ->
+    keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+
+clave api google maps e2wtaximetro -> 
+    AIzaSyAu7nN72wwjKftZCA7Ckm2Wovv5QAOOj1Q
+
  cordova plugin add cordova-plugin-geolocation
  cordova plugin add cordova-plugin-network-information
  cordova plugin de añadir cordova-plugin-inappbrowser
  cordova plugin add cordova-plugin-dialogs
+ cordova plugin add plugin.google.maps --variable API_KEY_FOR_ANDROID="AIzaSyAu7nN72wwjKftZCA7Ckm2Wovv5QAOOj1Q"
 
 */
 
@@ -25,16 +33,20 @@ var app = {
 		$("#btn_iniciar").click(function(event) {
 	        app.cordenada("app.cargaInicio();",false);
 	    });
+        $("#exit_app").click(function(event) {
+            app.exit();
+        });
+
 	},
 	carga: function(){
         /*app.conexion();*/
-		$('.slider').slider({
+		/*$('.slider').slider({
 		    indicators: false,
 		    height: 50,
 		    transition: 300,
 		    interval: 2000
 		});
-		$(".slider").show();
+		$(".slider").show();*/
 	},
 	isStorage: function(){
         try {
@@ -239,6 +251,20 @@ var app = {
     carga_url: function(url){
         cordova.InAppBrowser.open(url, '_blank', 'location=yes');
     },
+    exit: function(){
+        navigator.notification.confirm("Esta seguro que desea cerrar el Taximetro", function(r){
+            if (r==1) {
+                navigator.app.exitApp();
+            }
+        }, "Taximetro", ["Aceptar","Cancelar"]);
+    },
+
+
+
+
+
+
+
     conexion: function() {
         var networkState = navigator.connection.type;
 

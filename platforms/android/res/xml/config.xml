@@ -12,6 +12,7 @@
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
     <allow-intent href="market:*" />
+    <access launch-external="yes" origin="mailto:*" />
     <name>Taximetro</name>
     <description>
         Aplicacion que funciona como un taximetro
